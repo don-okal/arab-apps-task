@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task/core/routes/app_colors.dart';
 import 'package:task/core/utils/app_text_style.dart';
 import 'package:task/core/utils/size_utils.dart';
 
@@ -10,47 +11,54 @@ class MetricsView extends GetView<MetricsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Metrics Screen'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(getVerticalSize(16)),
-        child: Obx(
-          () => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Card(
-                child: ListTile(
-                  title: Text("Total Orders"),
-                  trailing: Text(
-                    "${controller.totalOrders.value}",
-                    style: AppTextStyle.black13500,
-                  ),
+    return Padding(
+      padding: EdgeInsets.all(getVerticalSize(16)),
+      child: Obx(
+        () => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card(
+              color: AppColors.blue,
+              child: ListTile(
+                title: Text(
+                  "Total Orders",
+                  style: AppTextStyle.white14600,
+                ),
+                trailing: Text(
+                  "${controller.totalOrders.value}",
+                  style: AppTextStyle.white14600,
                 ),
               ),
-              SizedBox(height: getVerticalSize(10)),
-              Card(
-                child: ListTile(
-                  title: Text("Average Order Price"),
-                  trailing: Text(
-                    "\$${controller.averagePrice.value.toStringAsFixed(2)}",
-                    style: AppTextStyle.black13500,
-                  ),
+            ),
+            SizedBox(height: getVerticalSize(10)),
+            Card(
+              color: AppColors.red,
+              child: ListTile(
+                title: Text(
+                  "Average Order Price",
+                  style: AppTextStyle.white14600,
+                ),
+                trailing: Text(
+                  "\$${controller.averagePrice.value.toStringAsFixed(2)}",
+                  style: AppTextStyle.white14600,
                 ),
               ),
-              SizedBox(height: getVerticalSize(10)),
-              Card(
-                child: ListTile(
-                  title: Text("Returned Orders"),
-                  trailing: Text(
-                    "${controller.returnedOrders.value}",
-                    style: AppTextStyle.black13500,
-                  ),
+            ),
+            SizedBox(height: getVerticalSize(10)),
+            Card(
+              color: AppColors.green,
+              child: ListTile(
+                title: Text(
+                  "Returned Orders",
+                  style: AppTextStyle.white14600,
+                ),
+                trailing: Text(
+                  "${controller.returnedOrders.value}",
+                  style: AppTextStyle.white14600,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
