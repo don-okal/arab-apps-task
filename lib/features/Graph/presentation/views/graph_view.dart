@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task/core/routes/app_colors.dart';
+import 'package:task/core/utils/size_utils.dart';
 
 import '../getx/controllers/graph_controller.dart';
 
@@ -28,7 +30,7 @@ class GraphView extends GetView<GraphController> {
         }
 
         return Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(getVerticalSize(16)),
           child: LineChart(
             LineChartData(
               minY: 0,
@@ -43,7 +45,7 @@ class GraphView extends GetView<GraphController> {
                       if (value % 2 != 0) return SizedBox.shrink();
                       return Text(
                         value.toInt().toString(),
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(fontSize: getFontSize(12)),
                       );
                     },
                   ),
@@ -51,7 +53,7 @@ class GraphView extends GetView<GraphController> {
                 bottomTitles: AxisTitles(
                   sideTitles: SideTitles(
                     showTitles: true,
-                    reservedSize: 300,
+                    reservedSize: getVerticalSize(300),
                     getTitlesWidget: (value, meta) {
                       if (value.toInt() < 0 ||
                           value.toInt() >= xLabels.length) {
@@ -59,7 +61,7 @@ class GraphView extends GetView<GraphController> {
                       }
                       return Text(
                         _monthLabel(int.parse(xLabels[value.toInt()])),
-                        style: TextStyle(fontSize: 10),
+                        style: TextStyle(fontSize: getFontSize(10)),
                       );
                     },
                   ),
@@ -74,7 +76,7 @@ class GraphView extends GetView<GraphController> {
                   spots: spots,
                   isCurved: true,
                   gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.green],
+                    colors: [AppColors.blue, AppColors.green],
                   ),
                   barWidth: 2,
                   isStrokeCapRound: true,
@@ -83,8 +85,8 @@ class GraphView extends GetView<GraphController> {
                     show: true,
                     gradient: LinearGradient(
                       colors: [
-                        Colors.blue.withOpacity(0.3),
-                        Colors.green.withOpacity(0.1),
+                        AppColors.blue.withOpacity(0.3),
+                        AppColors.green.withOpacity(0.1),
                       ],
                     ),
                   ),
@@ -99,13 +101,13 @@ class GraphView extends GetView<GraphController> {
                     return touchedSpots.map((spot) {
                       return LineTooltipItem(
                         '${data[spot.x.toInt()].key}\n',
-                        TextStyle(color: Colors.white),
+                        TextStyle(color: AppColors.white),
                         children: [
                           TextSpan(
                             text: '${spot.y.toInt()} orders',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.yellow),
+                                color: AppColors.yellow),
                           ),
                         ],
                       );
@@ -122,7 +124,6 @@ class GraphView extends GetView<GraphController> {
     );
   }
 
-  // Helper to map month numbers to short names
   String _monthLabel(int month) {
     const months = [
       'JAN',

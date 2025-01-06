@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task/core/utils/app_text_style.dart';
+import 'package:task/core/utils/size_utils.dart';
 
 import '../getx/controllers/metrics_controller.dart';
 
@@ -13,7 +15,7 @@ class MetricsView extends GetView<MetricsController> {
         title: Text('Metrics Screen'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(getVerticalSize(16)),
         child: Obx(
           () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,22 +23,30 @@ class MetricsView extends GetView<MetricsController> {
               Card(
                 child: ListTile(
                   title: Text("Total Orders"),
-                  trailing: Text("${controller.totalOrders.value}"),
+                  trailing: Text(
+                    "${controller.totalOrders.value}",
+                    style: AppTextStyle.black13500,
+                  ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: getVerticalSize(10)),
               Card(
                 child: ListTile(
                   title: Text("Average Order Price"),
                   trailing: Text(
-                      "\$${controller.averagePrice.value.toStringAsFixed(2)}"),
+                    "\$${controller.averagePrice.value.toStringAsFixed(2)}",
+                    style: AppTextStyle.black13500,
+                  ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: getVerticalSize(10)),
               Card(
                 child: ListTile(
                   title: Text("Returned Orders"),
-                  trailing: Text("${controller.returnedOrders.value}"),
+                  trailing: Text(
+                    "${controller.returnedOrders.value}",
+                    style: AppTextStyle.black13500,
+                  ),
                 ),
               ),
             ],
